@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux'
-import { addTodo } from './actions'
+import { addTodo, addTodoAsync } from './actions'
 
 class App extends Component {
   state = {
@@ -31,7 +31,8 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     // console.log('text', this.state.text);
-    this.props.onAddTodo(this.state.text)
+    // this.props.onAddTodo(this.state.text)
+    this.props.onAddTodoAsync(this.state.text)
     this.setState({text: ''})
   }
 
@@ -54,6 +55,8 @@ class App extends Component {
           <input type="text" value={this.state.text} onChange={this.handleChange}/>
           <button>Submit</button>
         </form>
+
+
       </div>
     );
   }
@@ -73,9 +76,13 @@ const mapDispatchToProps = (dispatch) => {
     onAddClick: () => {
       dispatch({type: 'ADD', value: 10})
     },
-    onAddTodo: (text) => {
-      // dispatch({type: 'ADD_TODO', text: text})
-      dispatch(addTodo(text))
+    // onAddTodo: (text) => {
+    //   // dispatch({type: 'ADD_TODO', text: text})
+    //   dispatch(addTodo(text))
+    // },
+    onAddTodoAsync: (text) => {
+      console.log('dispatch text', text);
+      return setTimeout(() => dispatch({ type: 'ADD_TODO', text}), 2000)
     }
   }
 }
