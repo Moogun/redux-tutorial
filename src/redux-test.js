@@ -37,6 +37,7 @@ store.subscribe( () => {
 
 store.dispatch({type: 'INCREMENT'})
 store.dispatch({type: 'ADD', value: 10})
+store.dispatch({type: 'ADD_TODO', text: 'Hello there!'})
 console.log(store.getState())
 
 // store.subscribe( () => {
