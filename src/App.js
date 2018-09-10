@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux'
+import { addTodo } from './actions'
 
 class App extends Component {
   state = {
@@ -13,29 +14,29 @@ class App extends Component {
   }
 
   handleIncrementOne = () => {
-    console.log(1);
+    // console.log(1);
     this.props.onIncrementClick()
   }
 
   handleAddTen = () => {
-    console.log(10);
+    // console.log(10);
     this.props.onAddClick()
   }
 
   handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({text: e.target.value})
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log('text', this.state.text);
+    // console.log('text', this.state.text);
     this.props.onAddTodo(this.state.text)
     this.setState({text: ''})
   }
 
   render() {
-    console.log('this.props', this.props);
+    // console.log('this.props', this.props);
     return (
       <div style={{marginLeft: '30px'}}>
         <h3>Redux Tutorial</h3>
@@ -73,7 +74,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({type: 'ADD', value: 10})
     },
     onAddTodo: (text) => {
-      dispatch({type: 'ADD_TODO', text: text})
+      // dispatch({type: 'ADD_TODO', text: text})
+      dispatch(addTodo(text))
     }
   }
 }
