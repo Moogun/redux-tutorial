@@ -47,7 +47,12 @@ class App extends Component {
 
         <br/>
         <br/>
-      
+
+        <form onSubmit={this.handleSubmit}>
+          <label name="todo"> todo </label>
+          <input type="text" value={this.state.text} onChange={this.handleChange}/>
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
@@ -66,6 +71,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onAddClick: () => {
       dispatch({type: 'ADD', value: 10})
+    },
+    onAddTodo: (text) => {
+      dispatch({type: 'ADD_TODO', text: text})
     }
   }
 }
