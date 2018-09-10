@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux'
-import { addTodo, addTodoAsync } from './actions'
+import { addTodo } from './actions'
 
 class App extends Component {
   state = {
