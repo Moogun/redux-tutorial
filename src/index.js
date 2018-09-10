@@ -7,31 +7,17 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-const initialState = {
- counter: 0
-}
-
-const rootReducer = (state = initialState, action) => {
-
- if (action.type === 'INCREMENT') {
-   return {
-     // counter: state.counter + 1
-     ...state,
-     counter: state.counter + 1
-   }
- } else if (action.type === 'ADD') {
-   return {
-     // counter: state.counter + action.value
-     ...state,
-     counter: state.counter + action.value
-   }
- }
-
- return state
-}
+import rootReducer from './reducers'
 
 const store = createStore(rootReducer)
 console.log(store.getState());
+
+store.subscribe( () => {
+ console.log('[subscription]', store.getState())
+})
+
+store.dispatch({type: 'INCREMENT'})
+store.dispatch({type: 'ADD', value: 10})
 
 ReactDOM.render(
   <Provider store={store}>
